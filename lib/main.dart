@@ -30,6 +30,8 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   int _selectedIndex = 0;
+  bool _showMoreOptions = false;
+
   static const List<Widget> _widgetOptions = <Widget>[
     ScreenLayout(title: "Home", widget: Home()),
     ScreenLayout(title: "My Wallets", widget: Wallets()),
@@ -43,7 +45,9 @@ class _MainState extends State<Main> {
         _selectedIndex = index;
       });
     } else {
-      //TODO: open options menu
+      setState(() {
+        _showMoreOptions = !_showMoreOptions;
+      });
     }
   }
 
@@ -59,75 +63,90 @@ class _MainState extends State<Main> {
             Positioned(
               bottom: 4,
               right: 0,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 15),
-                child: Container(
-                  width: 260,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    color: ThemeColors.white,
-                    boxShadow: List.filled(
-                      4,
-                      BoxShadow(
-                        color: ThemeColors.dark.withOpacity(0.05),
-                        blurRadius: 4,
-                        offset: Offset.fromDirection(2),
+              child: Visibility(
+                visible: _showMoreOptions,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 15),
+                  child: Container(
+                    width: 260,
+                    height: 150,
+                    decoration: BoxDecoration(
+                      color: ThemeColors.white,
+                      boxShadow: List.filled(
+                        4,
+                        BoxShadow(
+                          color: ThemeColors.dark.withOpacity(0.05),
+                          blurRadius: 4,
+                          offset: Offset.fromDirection(2),
+                        ),
                       ),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                     ),
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                  ),
-                  child: ListView(
-                    children: <Widget>[
-                      ListTile(
-                        leading: ClipRRect(
-                          borderRadius: BorderRadius.circular(14),
-                          child: SizedBox.fromSize(
-                            size: const Size.fromRadius(14),
-                            child: Image.network(
-                              "https://picsum.photos/200",
-                              fit: BoxFit.cover,
+                    child: ListView(
+                      children: <Widget>[
+                        ListTile(
+                          leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(14),
+                            child: SizedBox.fromSize(
+                              size: const Size.fromRadius(14),
+                              child: Image.network(
+                                "https://picsum.photos/200",
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                        title: const Text(
-                          "Naidoo Koobandra",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            overflow: TextOverflow.ellipsis,
+                          title: const Text(
+                            "Naidoo Koobandra",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
+                          selectedColor: ThemeColors.white,
+                          hoverColor: ThemeColors.primary,
+                          focusColor: ThemeColors.primary,
+                          onTap: () {
+                            setState(() {
+                              _showMoreOptions = false;
+                            });
+                          },
                         ),
-                        selectedColor: ThemeColors.white,
-                        hoverColor: ThemeColors.primary,
-                        focusColor: ThemeColors.primary,
-                        onTap: () {},
-                      ),
-                      ListTile(
-                        leading: const Icon(Icons.settings),
-                        title: const Text(
-                          "Settings",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ListTile(
+                          leading: const Icon(Icons.settings),
+                          title: const Text(
+                            "Settings",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          selectedColor: ThemeColors.white,
+                          hoverColor: ThemeColors.primary,
+                          focusColor: ThemeColors.primary,
+                          onTap: () {
+                            setState(() {
+                              _showMoreOptions = false;
+                            });
+                          },
                         ),
-                        selectedColor: ThemeColors.white,
-                        hoverColor: ThemeColors.primary,
-                        focusColor: ThemeColors.primary,
-                        onTap: () {},
-                      ),
-                      ListTile(
-                        leading: const Icon(Icons.arrow_back),
-                        title: const Text(
-                          "Logout",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ListTile(
+                          leading: const Icon(Icons.arrow_back),
+                          title: const Text(
+                            "Logout",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          selectedColor: ThemeColors.white,
+                          hoverColor: ThemeColors.primary,
+                          focusColor: ThemeColors.primary,
+                          onTap: () {
+                            setState(() {
+                              _showMoreOptions = false;
+                            });
+                          },
                         ),
-                        selectedColor: ThemeColors.white,
-                        hoverColor: ThemeColors.primary,
-                        focusColor: ThemeColors.primary,
-                        onTap: () {},
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
