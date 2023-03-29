@@ -44,24 +44,44 @@ class ScreenLayout extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: Container(
-                decoration: BoxDecoration(
-                  color: ThemeColors.white,
-                  boxShadow: List.filled(
-                    4,
-                    BoxShadow(
-                      color: ThemeColors.dark.withOpacity(0.05),
-                      blurRadius: 4,
-                      offset: Offset.fromDirection(2),
-                    ),
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(5),
-                    topRight: Radius.circular(5),
-                    bottomLeft: Radius.circular(5),
-                    bottomRight: Radius.circular(5),
-                  ),
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Colors.transparent,
                 ),
-                child: widget,
+                child: CustomScrollView(
+                  slivers: [
+                    SliverFillRemaining(
+                      child: ListView.builder(
+                        itemCount: 1,
+                        itemBuilder: (context, index) => Container(
+                          width: double.infinity,
+                          constraints: const BoxConstraints(
+                            minHeight: 400,
+                            maxHeight: double.infinity,
+                          ),
+                          decoration: BoxDecoration(
+                            color: ThemeColors.white,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(5),
+                              topRight: Radius.circular(5),
+                              bottomLeft: Radius.circular(5),
+                              bottomRight: Radius.circular(5),
+                            ),
+                            boxShadow: List.filled(
+                              4,
+                              BoxShadow(
+                                color: ThemeColors.dark.withOpacity(0.05),
+                                blurRadius: 4,
+                                offset: Offset.fromDirection(2),
+                              ),
+                            ),
+                          ),
+                          child: widget,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           )
