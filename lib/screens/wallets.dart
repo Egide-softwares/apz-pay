@@ -11,11 +11,19 @@ class Wallets extends StatefulWidget {
 class _WalletsState extends State<Wallets> {
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "Wallets Screen",
-      style: TextStyle(
-        color: ThemeColors.dark,
-      ),
+    return CustomScrollView(
+      slivers: [
+        SliverFillRemaining(
+          child: ListView.builder(
+            itemCount: 40,
+            itemBuilder: (context, index) => ListTile(
+              title: Text(
+                'Text $index',
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -1,10 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'theme/colors.dart';
 import './layouts/screen_layout.dart';
 import './screens/home.dart';
 import './screens/wallets.dart';
 import './screens/transact.dart';
 import 'screens/card.dart';
+import './utils/pair.dart';
 
 void main() => runApp(const App());
 
@@ -13,9 +16,12 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "APZ Pay",
-      home: Main(),
+      theme: ThemeData(
+        primaryColor: ThemeColors.primary,
+      ),
+      home: const Main(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -39,22 +45,52 @@ class _MainState extends State<Main> {
     Transact(),
   ];
 
+  static final List<Pair<Widget, String>> _options = <Pair<Widget, String>>[
+    Pair(
+      ClipRRect(
+        borderRadius: BorderRadius.circular(30),
+        child: SizedBox(
+          height: 30,
+          width: 30,
+          child: Image.asset(
+            "assets/images/default_avatar.jpg",
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+      "Naidoo Koobandra",
+    ),
+    Pair(const Icon(Icons.settings), "Settings"),
+    Pair(const Icon(Icons.arrow_back), "Logout"),
+  ];
+
   void _onItemTapped(BuildContext ctx, int index) {
-    if (index < 4) {
-      setState(() {
+    setState(() {
+      if (index < 4) {
         _selectedIndex = index;
-      });
-    } else {
-      setState(() {
+      } else {
         _showMoreOptions = !_showMoreOptions;
-      });
-    }
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      appBar: AppBar(
+        backgroundColor: ThemeColors.primary,
+        toolbarHeight: 0,
+        elevation: 0,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarBrightness: Brightness.light,
+          statusBarColor: Colors.transparent,
+        ),
+      ),
+      body: SafeArea(
+        top: true,
+        left: true,
+        bottom: true,
+        right: true,
         child: Stack(
           children: [
             Positioned.fill(
@@ -68,8 +104,6 @@ class _MainState extends State<Main> {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 15),
                   child: Container(
-                    width: 260,
-                    height: 150,
                     decoration: BoxDecoration(
                       color: ThemeColors.white,
                       boxShadow: List.filled(
@@ -82,66 +116,37 @@ class _MainState extends State<Main> {
                       ),
                       borderRadius: const BorderRadius.all(Radius.circular(5)),
                     ),
-                    child: ListView(
-                      children: <Widget>[
-                        ListTile(
-                          leading: ClipRRect(
-                            borderRadius: BorderRadius.circular(14),
-                            child: SizedBox.fromSize(
-                              size: const Size.fromRadius(14),
-                              child: Image.network(
-                                "https://picsum.photos/200",
-                                fit: BoxFit.cover,
+                    child: SizedBox(
+                      width: 250,
+                      child: Column(
+                        children: _options
+                            .map(
+                              (e) => ListTile(
+                                leading: Padding(
+                                  padding: const EdgeInsets.only(right: 10),
+                                  child: e.left,
+                                ),
+                                title: Text(
+                                  e.right,
+                                  style: TextStyle(
+                                    color: ThemeColors.dark,
+                                    fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                onTap: () {
+                                  var index = _options.indexOf(e);
+                                  if (kDebugMode) {
+                                    print("INDEX: $index");
+                                  }
+                                  setState(() {
+                                    _showMoreOptions = !_showMoreOptions;
+                                  });
+                                },
                               ),
-                            ),
-                          ),
-                          title: const Text(
-                            "Naidoo Koobandra",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          selectedColor: ThemeColors.white,
-                          hoverColor: ThemeColors.primary,
-                          focusColor: ThemeColors.primary,
-                          onTap: () {
-                            setState(() {
-                              _showMoreOptions = false;
-                            });
-                          },
-                        ),
-                        ListTile(
-                          leading: const Icon(Icons.settings),
-                          title: const Text(
-                            "Settings",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          selectedColor: ThemeColors.white,
-                          hoverColor: ThemeColors.primary,
-                          focusColor: ThemeColors.primary,
-                          onTap: () {
-                            setState(() {
-                              _showMoreOptions = false;
-                            });
-                          },
-                        ),
-                        ListTile(
-                          leading: const Icon(Icons.arrow_back),
-                          title: const Text(
-                            "Logout",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          selectedColor: ThemeColors.white,
-                          hoverColor: ThemeColors.primary,
-                          focusColor: ThemeColors.primary,
-                          onTap: () {
-                            setState(() {
-                              _showMoreOptions = false;
-                            });
-                          },
-                        ),
-                      ],
+                            )
+                            .toList(),
+                      ),
                     ),
                   ),
                 ),

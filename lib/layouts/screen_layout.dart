@@ -9,8 +9,9 @@ class ScreenLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return Container(
+      decoration: BoxDecoration(color: ThemeColors.white),
+      child: Stack(
         children: [
           Container(
             height: 140,
@@ -24,7 +25,7 @@ class ScreenLayout extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.only(top: 20, left: 15),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               child: Text(
                 title,
                 style: TextStyle(
@@ -36,28 +37,31 @@ class ScreenLayout extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 55,
+            top: 40,
             left: 0,
-            bottom: 0,
+            bottom: -7,
             right: 0,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: Container(
                 decoration: BoxDecoration(
-                    color: ThemeColors.white,
-                    boxShadow: List.filled(
-                      4,
-                      BoxShadow(
-                        color: ThemeColors.dark.withOpacity(0.05),
-                        blurRadius: 4,
-                        offset: Offset.fromDirection(2),
-                      ),
+                  color: ThemeColors.white,
+                  boxShadow: List.filled(
+                    4,
+                    BoxShadow(
+                      color: ThemeColors.dark.withOpacity(0.05),
+                      blurRadius: 4,
+                      offset: Offset.fromDirection(2),
                     ),
-                    borderRadius: const BorderRadius.all(Radius.circular(10))),
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: widget,
+                  ),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(5),
+                    topRight: Radius.circular(5),
+                    bottomLeft: Radius.circular(5),
+                    bottomRight: Radius.circular(5),
+                  ),
                 ),
+                child: widget,
               ),
             ),
           )
