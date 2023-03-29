@@ -166,7 +166,7 @@ class _MainState extends State<Main> {
             label: 'My Wallets',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard_outlined),
+            icon: Icon(Icons.payment),
             label: 'My Card',
           ),
           BottomNavigationBarItem(

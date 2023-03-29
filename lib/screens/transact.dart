@@ -115,10 +115,9 @@ class _TransactState extends State<Transact> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              ListView.builder(
-                itemCount: 3,
-                shrinkWrap: true,
-                itemBuilder: (context, index) => Container(
+              ...List.generate(
+                3,
+                (index) => Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: ThemeColors.white,
@@ -175,10 +174,9 @@ class _TransactState extends State<Transact> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              ListView.builder(
-                itemCount: 8,
-                shrinkWrap: true,
-                itemBuilder: (context, index) => Container(
+              ...List.generate(
+                8,
+                (index) => Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: ThemeColors.white,
@@ -194,7 +192,7 @@ class _TransactState extends State<Transact> {
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+                    children: [
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -224,6 +222,10 @@ class _TransactState extends State<Transact> {
                     ],
                   ),
                 ),
+              ),
+              const Divider(
+                color: Colors.transparent,
+                height: 20,
               ),
             ],
           ),

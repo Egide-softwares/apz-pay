@@ -62,11 +62,11 @@ class _WalletsState extends State<Wallets> {
               ),
             ),
           ),
-          ListView.builder(
-            itemCount: _wallets.length,
-            shrinkWrap: true,
-            itemBuilder: (context, index) => Padding(
-              padding: EdgeInsets.only(bottom: (index % 2 == 0 ? 15 : 0)),
+          ..._wallets.map(
+            (wallet) => Padding(
+              padding: EdgeInsets.only(
+                bottom: (_wallets.indexOf(wallet) % 2 == 0 ? 15 : 0),
+              ),
               child: GestureDetector(
                 onTap: () => {},
                 child: Container(
@@ -104,7 +104,7 @@ class _WalletsState extends State<Wallets> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          _wallets[index].name,
+                                          wallet.name,
                                           style: const TextStyle(
                                             fontWeight: FontWeight.w900,
                                             textBaseline:
@@ -128,13 +128,13 @@ class _WalletsState extends State<Wallets> {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 5),
                                       child: Text(
-                                        "${_wallets[index].currencySymbol} ${_wallets[index].balance.toString()}",
+                                        "${wallet.currencySymbol} ${wallet.balance.toString()}",
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 5),
                                       child: Text(
-                                        "${_wallets[index].currencySymbol} ${_wallets[index].available.toString()}",
+                                        "${wallet.currencySymbol} ${wallet.available.toString()}",
                                       ),
                                     ),
                                   ],
