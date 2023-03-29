@@ -12,7 +12,7 @@ class _WalletsState extends State<Wallets> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 40,
+      itemCount: 12,
       shrinkWrap: true,
       itemBuilder: (context, index) => ListTile(
         title: Text(

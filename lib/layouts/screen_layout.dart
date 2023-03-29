@@ -48,39 +48,37 @@ class ScreenLayout extends StatelessWidget {
                 decoration: const BoxDecoration(
                   color: Colors.transparent,
                 ),
-                child: CustomScrollView(
-                  slivers: [
-                    SliverFillRemaining(
-                      child: ListView.builder(
-                        itemCount: 1,
-                        itemBuilder: (context, index) => Container(
-                          width: double.infinity,
-                          constraints: const BoxConstraints(
-                            minHeight: 400,
-                            maxHeight: double.infinity,
-                          ),
-                          decoration: BoxDecoration(
-                            color: ThemeColors.white,
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(5),
-                              topRight: Radius.circular(5),
-                              bottomLeft: Radius.circular(5),
-                              bottomRight: Radius.circular(5),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverFillRemaining(
+                        child: ListView.builder(
+                          itemCount: 1,
+                          itemBuilder: (context, index) => Container(
+                            width: double.infinity,
+                            constraints: const BoxConstraints(
+                              minHeight: 400,
+                              maxHeight: double.infinity,
                             ),
-                            boxShadow: List.filled(
-                              4,
-                              BoxShadow(
-                                color: ThemeColors.dark.withOpacity(0.05),
-                                blurRadius: 4,
-                                offset: Offset.fromDirection(2),
+                            decoration: BoxDecoration(
+                              color: ThemeColors.white,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: List.filled(
+                                4,
+                                BoxShadow(
+                                  color: ThemeColors.dark.withOpacity(0.05),
+                                  blurRadius: 4,
+                                  offset: Offset.fromDirection(2),
+                                ),
                               ),
                             ),
+                            child: widget,
                           ),
-                          child: widget,
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
