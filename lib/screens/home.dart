@@ -17,7 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  PageController _controller = PageController();
+  final PageController _controller = PageController();
   int _currentPage = 0;
 
   final List<Pair<String, VoidCallback>> _addButtons = [
