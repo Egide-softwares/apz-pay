@@ -58,7 +58,7 @@ class ScreenLayout extends StatelessWidget {
                           itemBuilder: (context, index) => Container(
                             width: double.infinity,
                             constraints: const BoxConstraints(
-                              minHeight: 400,
+                              minHeight: 300,
                               maxHeight: double.infinity,
                             ),
                             decoration: BoxDecoration(
