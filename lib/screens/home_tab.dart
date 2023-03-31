@@ -143,7 +143,7 @@ class _HomeState extends State<Home> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 70,
+                        height: 90,
                         child: PageView(
                           controller: _controller,
                           children: _walletSlides,
