@@ -106,7 +106,7 @@ class _WalletsState extends State<Wallets> {
                                         Text(
                                           wallet.name,
                                           style: const TextStyle(
-                                            fontWeight: FontWeight.w900,
+                                            fontWeight: FontWeight.bold,
                                             textBaseline:
                                                 TextBaseline.alphabetic,
                                           ),
