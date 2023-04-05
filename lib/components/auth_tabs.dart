@@ -27,6 +27,7 @@ class _AuthTabsState extends State<AuthTabs> {
         child: TabBar(
           dividerColor: ThemeColors.lightGrey,
           indicatorColor: ThemeColors.primary,
+          labelColor: ThemeColors.primary,
           indicatorSize: TabBarIndicatorSize.tab,
           indicatorWeight: 4,
           onTap: (index) {

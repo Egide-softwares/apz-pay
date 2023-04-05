@@ -39,7 +39,7 @@ class _SigninState extends State<Signin> {
             const Text(
               "Welcome\nBack!",
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 26,
                 fontWeight: FontWeight.bold,
                 leadingDistribution: TextLeadingDistribution.even,
               ),
