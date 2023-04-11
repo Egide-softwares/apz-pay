@@ -58,10 +58,14 @@ class _MyCardState extends State<MyCard> {
 
   @override
   Widget build(BuildContext context) {
+    void goToWallet() {
+      widget.selectTab(SelectedTab.myWallet);
+    }
+
     final List<Tuple<Widget, String, VoidCallback>> actionButtons = [
-      Tuple(const Icon(Icons.payment), "Top Up", () => {}),
-      Tuple(const Icon(Icons.compare_arrows_outlined), "Transfer", () => {}),
-      Tuple(const Icon(Icons.payment), "Withdraw", () => {}),
+      Tuple(const Icon(Icons.payment), "Top Up", goToWallet),
+      Tuple(const Icon(Icons.compare_arrows_outlined), "Transfer", goToWallet),
+      Tuple(const Icon(Icons.payment), "Withdraw", goToWallet),
       Tuple(
         const Icon(Icons.history),
         "Transaction History",
