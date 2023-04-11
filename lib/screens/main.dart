@@ -239,7 +239,7 @@ class _MainState extends State<Main> {
         currentIndex: widget.selectedBottomTab.index <= 4
             ? widget.selectedBottomTab.index
             : 4,
-        selectedItemColor: widget.selectedBottomTab.index != 4
+        selectedItemColor: widget.selectedBottomTab.index <= 4
             ? ThemeColors.primary
             : ThemeColors.dark,
         unselectedItemColor: ThemeColors.dark,
