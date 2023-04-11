@@ -59,7 +59,7 @@ class _WalletsState extends State<Wallets> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(25),
       child: Column(
         children: [
           Padding(
@@ -109,7 +109,12 @@ class _WalletsState extends State<Wallets> {
                 bottom: (_wallets.indexOf(wallet) % 2 == 0 ? 15 : 0),
               ),
               child: GestureDetector(
-                onTap: () => {},
+                onTap: () => {
+                  StoreProvider.dispatch(
+                    context,
+                    SelectBottomTabAction(selectedTab: SelectedTab.myWallet),
+                  )
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     color: ThemeColors.white,
