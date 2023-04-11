@@ -1,5 +1,6 @@
 import 'package:apz_pay/redux/actions/select_bottom_tab_action.dart';
 import 'package:apz_pay/redux/state/app_state.dart';
+import 'package:apz_pay/screens/pay_bill_tab.dart';
 import 'package:apz_pay/utils/enums.dart';
 import 'package:apz_pay/utils/tuple.dart';
 import 'package:async_redux/async_redux.dart';
@@ -84,7 +85,8 @@ class _MainState extends State<Main> {
       title: "My Virtual Card",
       widget: MyCardConnector(),
     ),
-    SelectedTab.transact: Transact()
+    SelectedTab.transact: Transact(),
+    SelectedTab.payBill: PayBill()
   };
 
   static final List<Tuple<Widget, String, Function(BuildContext ctx)>>
@@ -229,8 +231,12 @@ class _MainState extends State<Main> {
             label: 'More',
           ),
         ],
-        currentIndex: widget.selectedBottomTab.index,
-        selectedItemColor: ThemeColors.primary,
+        currentIndex: widget.selectedBottomTab.index <= 4
+            ? widget.selectedBottomTab.index
+            : 4,
+        selectedItemColor: widget.selectedBottomTab.index != 4
+            ? ThemeColors.primary
+            : ThemeColors.dark,
         unselectedItemColor: ThemeColors.dark,
         showUnselectedLabels: true,
         onTap: (index) {

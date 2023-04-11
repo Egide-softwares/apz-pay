@@ -161,7 +161,7 @@ class _HomeState extends State<Home> {
       Tuple(
         const Icon(Icons.list),
         "Pay a Bill",
-        () => {},
+        () => {widget.selectTab(SelectedTab.payBill)},
       ),
       Tuple(
         const Icon(Icons.history),

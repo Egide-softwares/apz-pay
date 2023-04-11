@@ -75,6 +75,8 @@ class _SignUpState extends State<SignUp> {
                             validator: (value) {
                               if (!RegExp(r'^[0-9]+$').hasMatch("$value")) {
                                 return "Inavlid phone number";
+                              } else {
+                                return null;
                               }
                             },
                             decoration: InputDecoration(

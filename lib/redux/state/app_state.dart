@@ -26,7 +26,7 @@ class AppState {
   static AppState initialState() {
     return AppState(
       selectedBottomTab: SelectedTab.home,
-      selectedBottomTabHistory: [],
+      selectedBottomTabHistory: [SelectedTab.home],
     );
   }
 

@@ -1,1 +1,1 @@
-enum SelectedTab { home, myWallets, myCard, transact }
+enum SelectedTab { home, myWallets, myCard, transact, payBill }
