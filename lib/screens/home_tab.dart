@@ -156,7 +156,7 @@ class _HomeState extends State<Home> {
       Tuple(
         const Icon(Icons.shopping_basket),
         "Buy Airtime, Data or Electricity",
-        () => {},
+        () => {widget.selectTab(SelectedTab.buy)},
       ),
       Tuple(
         const Icon(Icons.list),

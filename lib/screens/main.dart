@@ -1,5 +1,6 @@
 import 'package:apz_pay/redux/actions/select_bottom_tab_action.dart';
 import 'package:apz_pay/redux/state/app_state.dart';
+import 'package:apz_pay/screens/buy_tab.dart';
 import 'package:apz_pay/screens/pay_bill_tab.dart';
 import 'package:apz_pay/screens/wallet_tab.dart';
 import 'package:apz_pay/utils/enums.dart';
@@ -88,6 +89,7 @@ class _MainState extends State<Main> {
     ),
     SelectedTab.transact: Transact(),
     SelectedTab.payBill: PayBill(),
+    SelectedTab.buy: PurchaseOptions(),
     SelectedTab.myWallet: ScreenLayout(
       title: "My Wallet",
       widget: MyWalletConnector(),
