@@ -1,3 +1,5 @@
+import 'package:apz_pay/redux/actions/pop_bottom_tab_history_action.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import '../theme/colors.dart';
 
@@ -43,7 +45,12 @@ class _TransactState extends State<Transact> {
                   Padding(
                     padding: const EdgeInsets.only(right: 3),
                     child: IconButton(
-                      onPressed: () => {},
+                      onPressed: () => {
+                        StoreProvider.dispatch(
+                          context,
+                          PopBottomTabHistoryAction(),
+                        )
+                      },
                       icon: const Icon(Icons.chevron_left),
                     ),
                   ),

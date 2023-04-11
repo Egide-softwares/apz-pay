@@ -1,4 +1,8 @@
+import 'package:apz_pay/redux/actions/select_bottom_tab_action.dart';
+import 'package:apz_pay/redux/state/app_state.dart';
+import 'package:apz_pay/utils/enums.dart';
 import 'package:apz_pay/utils/tuple.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../theme/colors.dart';
@@ -9,23 +13,79 @@ import 'transact_tab.dart';
 import 'card_tab.dart';
 import './signin.dart';
 
+/// Main Widget Store Connector
+class MainConnector extends StatelessWidget {
+  const MainConnector({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, ViewModel>(
+      vm: () => Factory(this),
+      builder: (BuildContext context, ViewModel vm) => Main(
+        selectedBottomTab: vm.selectedBottomTab,
+        selectTab: vm.selectTab,
+      ),
+    );
+  }
+}
+
+/// MainConnector Factory
+class Factory extends VmFactory<AppState, MainConnector, ViewModel> {
+  Factory(connector) : super(connector);
+
+  @override
+  ViewModel fromStore() => ViewModel(
+        selectedBottomTab: state.selectedBottomTab,
+        selectTab: (SelectedTab tab) => dispatch(
+          SelectBottomTabAction(selectedTab: tab),
+        ),
+      );
+}
+
+/// MainConnector ViewModel
+class ViewModel extends Vm {
+  final SelectedTab selectedBottomTab;
+  final void Function(SelectedTab) selectTab;
+
+  ViewModel({
+    required this.selectedBottomTab,
+    required this.selectTab,
+  }) : super(equals: [selectedBottomTab]);
+}
+
+/// Main Widget
 class Main extends StatefulWidget {
-  const Main({super.key});
+  const Main({
+    super.key,
+    required this.selectedBottomTab,
+    required this.selectTab,
+  });
+
+  final SelectedTab selectedBottomTab;
+  final void Function(SelectedTab) selectTab;
 
   @override
   State<Main> createState() => _MainState();
 }
 
 class _MainState extends State<Main> {
-  int _selectedIndex = 0;
   bool _showMoreOptions = false;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    ScreenLayout(title: "Home", widget: Home()),
-    ScreenLayout(title: "My Wallets", widget: Wallets()),
-    ScreenLayout(title: "My Virtual Card", widget: MyCard()),
-    Transact(),
-  ];
+  static const Map<SelectedTab, Widget> _widgetOptions = {
+    SelectedTab.home: ScreenLayout(
+      title: "Home",
+      widget: HomeConnector(),
+    ),
+    SelectedTab.myWallets: ScreenLayout(
+      title: "My Wallets",
+      widget: WalletsConnector(),
+    ),
+    SelectedTab.myCard: ScreenLayout(
+      title: "My Virtual Card",
+      widget: MyCardConnector(),
+    ),
+    SelectedTab.transact: Transact()
+  };
 
   static final List<Tuple<Widget, String, Function(BuildContext ctx)>>
       _options = [
@@ -58,14 +118,14 @@ class _MainState extends State<Main> {
     ),
   ];
 
-  void _onItemTapped(BuildContext ctx, int index) {
-    setState(() {
-      if (index < 4) {
-        _selectedIndex = index;
-      } else {
+  void _onItemTapped(int index) {
+    if (index != 4) {
+      widget.selectTab(SelectedTab.values.elementAt(index));
+    } else {
+      setState(() {
         _showMoreOptions = !_showMoreOptions;
-      }
-    });
+      });
+    }
   }
 
   @override
@@ -88,7 +148,7 @@ class _MainState extends State<Main> {
         child: Stack(
           children: [
             Positioned.fill(
-              child: _widgetOptions.elementAt(_selectedIndex),
+              child: _widgetOptions[widget.selectedBottomTab]!,
             ),
             Positioned(
               bottom: 4,
@@ -169,12 +229,12 @@ class _MainState extends State<Main> {
             label: 'More',
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: widget.selectedBottomTab.index,
         selectedItemColor: ThemeColors.primary,
         unselectedItemColor: ThemeColors.dark,
         showUnselectedLabels: true,
         onTap: (index) {
-          _onItemTapped(context, index);
+          _onItemTapped(index);
         },
       ),
     );

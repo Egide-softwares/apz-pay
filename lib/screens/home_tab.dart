@@ -1,8 +1,47 @@
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import '../redux/actions/select_bottom_tab_action.dart';
+import '../redux/state/app_state.dart';
+import '../utils/enums.dart';
 import '../utils/pair.dart';
 import '../utils/tuple.dart';
 import '../models/wallet.dart';
 import '../theme/colors.dart';
+
+class HomeConnector extends StatelessWidget {
+  const HomeConnector({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, ViewModel>(
+      vm: () => Factory(this),
+      builder: (BuildContext context, ViewModel vm) => Home(
+        selectTab: vm.selectTab,
+      ),
+    );
+  }
+}
+
+class Factory extends VmFactory<AppState, HomeConnector, ViewModel> {
+  Factory(connector) : super(connector);
+
+  @override
+  ViewModel fromStore() => ViewModel(
+        selectTab: (SelectedTab tab) => dispatch(
+          SelectBottomTabAction(selectedTab: tab),
+        ),
+      );
+}
+
+class ViewModel extends Vm {
+  final int key;
+  final void Function(SelectedTab) selectTab;
+
+  ViewModel({
+    this.key = 0,
+    required this.selectTab,
+  }) : super(equals: [key]);
+}
 
 List<Wallet> wallets = <Wallet>[
   const Wallet("FDADFSA", 13224, 13064, "R"),
@@ -10,7 +49,9 @@ List<Wallet> wallets = <Wallet>[
 ];
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  const Home({super.key, required this.selectTab});
+
+  final void Function(SelectedTab) selectTab;
 
   @override
   State<Home> createState() => _HomeState();
@@ -19,24 +60,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final PageController _controller = PageController();
   int _currentPage = 0;
-
-  final List<Pair<String, VoidCallback>> _addButtons = [
-    Pair("Add a Virtual Card", () => {}),
-    Pair("Add a Physical Card", () => {}),
-    Pair("Add Another Wallet", () => {}),
-  ];
-
-  final List<Tuple<Widget, String, VoidCallback>> _actionButtons = [
-    Tuple(const Icon(Icons.qr_code), "Pay a QR code", () => {}),
-    Tuple(const Icon(Icons.money), "Get paid with your QR code", () => {}),
-    Tuple(
-      const Icon(Icons.shopping_basket),
-      "Buy Airtime, Data or Electricity",
-      () => {},
-    ),
-    Tuple(const Icon(Icons.list), "Pay a Bill", () => {}),
-    Tuple(const Icon(Icons.history), "Transaction History", () => {}),
-  ];
 
   @override
   void initState() {
@@ -117,6 +140,35 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Pair<String, VoidCallback>> addButtons = [
+      Pair("Add a Virtual Card", () => {}),
+      Pair("Add a Physical Card", () => {}),
+      Pair("Add Another Wallet", () => {}),
+    ];
+
+    final List<Tuple<Widget, String, VoidCallback>> actionButtons = [
+      Tuple(const Icon(Icons.qr_code), "Pay a QR code", () => {}),
+      Tuple(
+        const Icon(Icons.money),
+        "Get paid with your QR code",
+        () => {},
+      ),
+      Tuple(
+        const Icon(Icons.shopping_basket),
+        "Buy Airtime, Data or Electricity",
+        () => {},
+      ),
+      Tuple(
+        const Icon(Icons.list),
+        "Pay a Bill",
+        () => {},
+      ),
+      Tuple(
+        const Icon(Icons.history),
+        "Transaction History",
+        () => {widget.selectTab(SelectedTab.transact)},
+      ),
+    ];
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -199,7 +251,7 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          ..._actionButtons.map(
+          ...actionButtons.map(
             (tuple) => Padding(
               padding: const EdgeInsets.only(bottom: 15),
               child: GestureDetector(
@@ -240,10 +292,10 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          ..._addButtons.map(
+          ...addButtons.map(
             (pair) => Padding(
               padding: EdgeInsets.only(
-                top: (_addButtons.indexOf(pair) > 0 ? 15 : 0),
+                top: (addButtons.indexOf(pair) > 0 ? 15 : 0),
               ),
               child: GestureDetector(
                 onTap: pair.right,

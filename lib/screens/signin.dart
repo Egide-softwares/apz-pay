@@ -172,7 +172,7 @@ class _SigninState extends State<Signin> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute<void>(
-                    builder: (BuildContext ctx) => const Main(),
+                    builder: (BuildContext ctx) => const MainConnector(),
                   ),
                 );
               },

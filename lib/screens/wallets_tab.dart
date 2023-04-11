@@ -1,9 +1,50 @@
 import 'package:apz_pay/models/wallet.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import '../redux/actions/select_bottom_tab_action.dart';
+import '../redux/state/app_state.dart';
 import '../theme/colors.dart';
+import '../utils/enums.dart';
+
+class WalletsConnector extends StatelessWidget {
+  const WalletsConnector({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, ViewModel>(
+      vm: () => Factory(this),
+      builder: (BuildContext context, ViewModel vm) => Wallets(
+        selectTab: vm.selectTab,
+      ),
+    );
+  }
+}
+
+class Factory extends VmFactory<AppState, WalletsConnector, ViewModel> {
+  Factory(connector) : super(connector);
+
+  @override
+  ViewModel fromStore() => ViewModel(
+        selectTab: (SelectedTab tab) => dispatch(
+          SelectBottomTabAction(selectedTab: tab),
+        ),
+      );
+}
+
+class ViewModel extends Vm {
+  final int key;
+  final void Function(SelectedTab) selectTab;
+
+  ViewModel({
+    this.key = 0,
+    required this.selectTab,
+  }) : super(equals: [key]);
+}
 
 class Wallets extends StatefulWidget {
-  const Wallets({super.key});
+  const Wallets({super.key, required this.selectTab});
+
+  final void Function(SelectedTab) selectTab;
 
   @override
   State<Wallets> createState() => _WalletsState();

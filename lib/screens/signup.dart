@@ -189,7 +189,7 @@ class _SignUpState extends State<SignUp> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute<void>(
-                    builder: (BuildContext ctx) => const Main(),
+                    builder: (BuildContext ctx) => const MainConnector(),
                   ),
                 );
               },
