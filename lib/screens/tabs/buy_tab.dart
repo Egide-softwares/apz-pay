@@ -1,48 +1,33 @@
 import 'package:apz_pay/redux/actions/pop_bottom_tab_history_action.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import '../theme/colors.dart';
-import '../utils/tuple.dart';
+import '../../theme/colors.dart';
+import '../../utils/tuple.dart';
 
-class PayBill extends StatefulWidget {
-  const PayBill({super.key});
+class PurchaseOptions extends StatefulWidget {
+  const PurchaseOptions({super.key});
 
   @override
-  State<PayBill> createState() => _PayBillState();
+  State<PurchaseOptions> createState() => _PurchaseOptionsState();
 }
 
-class _PayBillState extends State<PayBill> {
+class _PurchaseOptionsState extends State<PurchaseOptions> {
   @override
   Widget build(BuildContext context) {
     final List<Tuple<Widget, String, VoidCallback>> options = [
       Tuple(
-        Image.asset("assets/images/easy-pay.jpg", width: 35, height: 30),
-        "Pay your EasyPay Bills",
+        const Icon(Icons.network_cell_outlined),
+        "Airtime or Data",
         () => {},
       ),
       Tuple(
-        Image.asset("assets/images/pay-at.jpg", width: 35, height: 30),
-        "Pay your Pay@Bills",
+        const Icon(Icons.electric_bike_outlined),
+        "Electricity",
         () => {},
       ),
       Tuple(
-        Image.asset("assets/images/financial.jpg", width: 35, height: 30),
-        "Financial Services",
-        () => {},
-      ),
-      Tuple(
-        Image.asset("assets/images/municipality.jpg", width: 35, height: 30),
-        "Municipalities",
-        () => {},
-      ),
-      Tuple(
-        const Icon(Icons.computer_outlined),
-        "Television",
-        () => {},
-      ),
-      Tuple(
-        const Icon(Icons.shopping_cart_outlined),
-        "Retail",
+        const Icon(Icons.water_outlined),
+        "Water",
         () => {},
       ),
     ];
@@ -77,13 +62,16 @@ class _PayBillState extends State<PayBill> {
                     },
                     icon: const Icon(Icons.chevron_left),
                   ),
-                  const Text("Pay bill"),
+                  const Text(
+                    "Buy Airtime, Data, Electricity or Water",
+                    style: TextStyle(overflow: TextOverflow.ellipsis),
+                  ),
                 ],
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 25),
                 child: Text(
-                  "Select a Provider",
+                  "What would you like to buy?",
                   style: TextStyle(fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
@@ -91,9 +79,9 @@ class _PayBillState extends State<PayBill> {
               ...options.map(
                 (tuple) => Padding(
                   padding: const EdgeInsets.only(
-                    left: 15,
+                    left: 20,
                     bottom: 15,
-                    right: 15,
+                    right: 20,
                   ),
                   child: GestureDetector(
                     onTap: tuple.third,
@@ -113,7 +101,7 @@ class _PayBillState extends State<PayBill> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                          vertical: 17,
+                          vertical: 23,
                           horizontal: 15,
                         ),
                         child: Row(

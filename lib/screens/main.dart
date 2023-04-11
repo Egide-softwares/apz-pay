@@ -1,20 +1,20 @@
-import 'package:apz_pay/redux/actions/select_bottom_tab_action.dart';
-import 'package:apz_pay/redux/state/app_state.dart';
-import 'package:apz_pay/screens/buy_tab.dart';
-import 'package:apz_pay/screens/pay_bill_tab.dart';
-import 'package:apz_pay/screens/wallet_tab.dart';
-import 'package:apz_pay/utils/enums.dart';
-import 'package:apz_pay/utils/tuple.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../theme/colors.dart';
 import '../layouts/screen_layout.dart';
-import 'home_tab.dart';
-import 'wallets_tab.dart';
-import 'transact_tab.dart';
-import 'card_tab.dart';
-import './signin.dart';
+import '../redux/actions/select_bottom_tab_action.dart';
+import '../redux/state/app_state.dart';
+import '../utils/enums.dart';
+import '../utils/tuple.dart';
+import 'tabs/buy_tab.dart';
+import 'tabs/pay_bill_tab.dart';
+import 'tabs/wallet_tab.dart';
+import 'tabs/home_tab.dart';
+import 'tabs/wallets_tab.dart';
+import 'tabs/transact_tab.dart';
+import 'tabs/card_tab.dart';
+import 'signin.dart';
 
 /// Main Widget Store Connector
 class MainConnector extends StatelessWidget {

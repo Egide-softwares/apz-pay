@@ -1,7 +1,7 @@
 import 'package:apz_pay/redux/actions/pop_bottom_tab_history_action.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import '../theme/colors.dart';
+import '../../theme/colors.dart';
 
 class Transact extends StatefulWidget {
   const Transact({super.key});

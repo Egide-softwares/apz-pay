@@ -1,11 +1,11 @@
 import 'package:apz_pay/models/wallet.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import '../redux/actions/select_bottom_tab_action.dart';
-import '../redux/state/app_state.dart';
-import '../theme/colors.dart';
-import '../utils/enums.dart';
-import '../utils/tuple.dart';
+import '../../redux/actions/select_bottom_tab_action.dart';
+import '../../redux/state/app_state.dart';
+import '../../theme/colors.dart';
+import '../../utils/enums.dart';
+import '../../utils/tuple.dart';
 
 class MyWalletConnector extends StatelessWidget {
   const MyWalletConnector({Key? key}) : super(key: key);
