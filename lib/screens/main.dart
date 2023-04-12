@@ -14,6 +14,7 @@ import 'tabs/home_tab.dart';
 import 'tabs/wallets_tab.dart';
 import 'tabs/transact_tab.dart';
 import 'tabs/card_tab.dart';
+import 'tabs/profile_tab.dart';
 import 'signin.dart';
 
 /// Main Widget Store Connector
@@ -94,6 +95,7 @@ class _MainState extends State<Main> {
       title: "My Wallet",
       widget: MyWalletConnector(),
     ),
+    SelectedTab.profile: ProfileConnector()
   };
 
   static final List<Tuple<Widget, String, Function(BuildContext ctx)>>
@@ -111,7 +113,12 @@ class _MainState extends State<Main> {
         ),
       ),
       "Naidoo Koobandra",
-      (BuildContext ctx) {},
+      (BuildContext ctx) {
+        StoreProvider.dispatch(
+          ctx,
+          SelectBottomTabAction(selectedTab: SelectedTab.profile),
+        );
+      },
     ),
     Tuple(const Icon(Icons.settings), "Settings", (BuildContext ctx) {}),
     Tuple(
