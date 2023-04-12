@@ -23,6 +23,7 @@ class _AuthTabsState extends State<AuthTabs> {
               width: 1.0,
             ),
           ),
+          color: ThemeColors.white,
         ),
         child: TabBar(
           dividerColor: ThemeColors.lightGrey,
