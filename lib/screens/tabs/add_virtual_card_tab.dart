@@ -60,9 +60,120 @@ class _AddVirtualCardState extends State<AddVirtualCard> {
               ),
               Visibility(
                 visible: _step == 1,
-                child: Placeholder(
-                  color: ThemeColors.primary,
-                  fallbackHeight: 200,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Center(
+                          child: Icon(
+                            Icons.payment,
+                            color: ThemeColors.primary,
+                            size: 60,
+                          ),
+                        ),
+                      ),
+                      const Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          child: Text(
+                            "You don't have a virtual card.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Use your virtual card to shop online securely, pay QR codes or tap and pay with your phone.",
+                            maxLines: 10,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          child: Text(
+                            "Easily top up your card using wallet.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30),
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: ThemeColors.lightGrey),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 3,
+                              horizontal: 7,
+                            ),
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                labelText: "Name your virtual card wallet",
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.all(0),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              _step = 2;
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 23,
+                              vertical: 23,
+                            ),
+                            backgroundColor: ThemeColors.primary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                          ),
+                          child: Text(
+                            "Create my virtual card",
+                            style: TextStyle(color: ThemeColors.white),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Visibility(

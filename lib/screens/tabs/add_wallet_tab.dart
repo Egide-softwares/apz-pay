@@ -106,7 +106,10 @@ class _AddWalletState extends State<AddWallet> {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: const Padding(
-                            padding: EdgeInsets.all(7),
+                            padding: EdgeInsets.symmetric(
+                              vertical: 3,
+                              horizontal: 7,
+                            ),
                             child: TextField(
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(

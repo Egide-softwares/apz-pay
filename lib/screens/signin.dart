@@ -85,12 +85,16 @@ class _SigninState extends State<Signin> {
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: ThemeColors.lightGrey),
+                                border: Border.all(
+                                  color: ThemeColors.lightGrey,
+                                ),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(7),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 3,
+                                  horizontal: 7,
+                                ),
                                 child: TextFormField(
                                   keyboardType: TextInputType.number,
                                   validator: (value) {
@@ -136,7 +140,10 @@ class _SigninState extends State<Signin> {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(7),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 3,
+                                  horizontal: 7,
+                                ),
                                 child: TextFormField(
                                   keyboardType: TextInputType.emailAddress,
                                   decoration: const InputDecoration(
@@ -158,7 +165,10 @@ class _SigninState extends State<Signin> {
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(7),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 3,
+                                horizontal: 7,
+                              ),
                               child: Row(
                                 children: [
                                   Expanded(

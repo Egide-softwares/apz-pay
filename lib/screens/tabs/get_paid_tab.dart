@@ -79,7 +79,7 @@ class _GetPaidByQrCodeState extends State<GetPaidByQrCode> {
                             border: InputBorder.none,
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 10,
-                              vertical: 20,
+                              vertical: 15,
                             ),
                           ),
                           value: _selectedCardWallet,
@@ -118,7 +118,10 @@ class _GetPaidByQrCodeState extends State<GetPaidByQrCode> {
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: const Padding(
-                          padding: EdgeInsets.all(7),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 3,
+                            horizontal: 7,
+                          ),
                           child: TextField(
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
@@ -139,7 +142,10 @@ class _GetPaidByQrCodeState extends State<GetPaidByQrCode> {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: const Padding(
-                        padding: EdgeInsets.all(7),
+                        padding: EdgeInsets.symmetric(
+                          vertical: 3,
+                          horizontal: 7,
+                        ),
                         child: TextField(
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
