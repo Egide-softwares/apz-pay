@@ -147,11 +147,15 @@ class _HomeState extends State<Home> {
     ];
 
     final List<Tuple<Widget, String, VoidCallback>> actionButtons = [
-      Tuple(const Icon(Icons.qr_code), "Pay a QR code", () => {}),
+      Tuple(
+        const Icon(Icons.qr_code),
+        "Pay a QR code",
+        () => {widget.selectTab(SelectedTab.payQrCode)},
+      ),
       Tuple(
         const Icon(Icons.money),
         "Get paid with your QR code",
-        () => {},
+        () => {widget.selectTab(SelectedTab.receivePaymentByQrCode)},
       ),
       Tuple(
         const Icon(Icons.shopping_basket),

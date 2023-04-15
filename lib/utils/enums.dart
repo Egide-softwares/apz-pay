@@ -7,4 +7,6 @@ enum SelectedTab {
   myWallet,
   buy,
   profile,
+  payQrCode,
+  receivePaymentByQrCode
 }

@@ -1,3 +1,5 @@
+import 'package:apz_pay/screens/tabs/get_paid_tab.dart';
+import 'package:apz_pay/screens/tabs/pay_qrcode_tab.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -95,7 +97,9 @@ class _MainState extends State<Main> {
       title: "My Wallet",
       widget: MyWalletConnector(),
     ),
-    SelectedTab.profile: ProfileConnector()
+    SelectedTab.profile: ProfileConnector(),
+    SelectedTab.payQrCode: PayQrCode(),
+    SelectedTab.receivePaymentByQrCode: GetPaidByQrCode()
   };
 
   static final List<Tuple<Widget?, String, Function(BuildContext ctx)>>
