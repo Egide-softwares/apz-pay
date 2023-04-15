@@ -30,8 +30,8 @@ class AppState {
 
   static AppState initialState() {
     return AppState(
-      selectedBottomTab: SelectedTab.payQrCode,
-      selectedBottomTabHistory: [SelectedTab.payQrCode],
+      selectedBottomTab: SelectedTab.home,
+      selectedBottomTabHistory: [SelectedTab.home],
       user: null,
     );
   }
