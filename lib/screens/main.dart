@@ -98,7 +98,7 @@ class _MainState extends State<Main> {
     SelectedTab.profile: ProfileConnector()
   };
 
-  static final List<Tuple<Widget, String, Function(BuildContext ctx)>>
+  static final List<Tuple<Widget?, String, Function(BuildContext ctx)>>
       _options = [
     Tuple(
       ClipRRect(
@@ -122,7 +122,7 @@ class _MainState extends State<Main> {
     ),
     Tuple(const Icon(Icons.settings), "Settings", (BuildContext ctx) {}),
     Tuple(
-      const Icon(Icons.arrow_back),
+      null,
       "Logout",
       (BuildContext ctx) {
         Navigator.of(ctx).push(
@@ -193,13 +193,17 @@ class _MainState extends State<Main> {
                             .map(
                               (e) => ListTile(
                                 leading: Padding(
-                                  padding: const EdgeInsets.only(right: 10),
+                                  padding: EdgeInsets.only(
+                                    right: e.first != null ? 10 : 0,
+                                  ),
                                   child: e.first,
                                 ),
                                 title: Text(
                                   e.second,
                                   style: TextStyle(
-                                    color: ThemeColors.dark,
+                                    color: e.first != null
+                                        ? ThemeColors.dark
+                                        : ThemeColors.red,
                                     fontWeight: FontWeight.bold,
                                     overflow: TextOverflow.ellipsis,
                                   ),

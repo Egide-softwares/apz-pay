@@ -3,8 +3,8 @@ class User {
   final String lastName;
   final String email;
   final String idNumber;
-  final String idURL;
-  final String selfieURL;
+  final String? idURL;
+  final String? selfieURL;
   final bool isVerified;
 
   User({
