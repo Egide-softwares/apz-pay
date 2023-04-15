@@ -229,48 +229,58 @@ class _SigninState extends State<Signin> {
                     padding: const EdgeInsets.symmetric(vertical: 20),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text("Forgot your password? "),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Text(
-                                "Reset it here",
-                                style: TextStyle(
-                                  color: ThemeColors.primary,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: RichText(
+                            text: TextSpan(
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                overflow: TextOverflow.ellipsis,
                               ),
+                              children: [
+                                const TextSpan(
+                                  text: "Forgot your password? ",
+                                ),
+                                TextSpan(
+                                  text: "Reset it here.",
+                                  style: TextStyle(
+                                    color: ThemeColors.primary,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text("Is your account not set up yet? "),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute<void>(
-                                      builder: (BuildContext ctx) =>
-                                          const SignUp(),
-                                    ),
-                                  );
-                                },
-                                child: Text(
-                                  "Register here",
-                                  softWrap: true,
-                                  style: TextStyle(
-                                    color: ThemeColors.primary,
-                                    fontWeight: FontWeight.normal,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext ctx) => const SignUp(),
                                 ),
+                              );
+                            },
+                            child: RichText(
+                              text: TextSpan(
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                children: [
+                                  const TextSpan(
+                                    text:
+                                        "Is your account not account account account account account set up yet? ",
+                                  ),
+                                  TextSpan(
+                                    text: "Register here.",
+                                    style: TextStyle(
+                                      color: ThemeColors.primary,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ],

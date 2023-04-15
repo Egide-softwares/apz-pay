@@ -177,15 +177,27 @@ class _SignUpState extends State<SignUp> {
                                 },
                               ),
                             ),
-                            const Text("I accept the "),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Text(
-                                "terms and conditions",
-                                style: TextStyle(
-                                  color: ThemeColors.primary,
-                                  fontWeight: FontWeight.normal,
-                                  overflow: TextOverflow.ellipsis,
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: RichText(
+                                  text: TextSpan(
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    children: [
+                                      const TextSpan(
+                                        text: "I accept the ",
+                                      ),
+                                      TextSpan(
+                                        text: "terms and conditions",
+                                        style: TextStyle(
+                                          color: ThemeColors.primary,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -208,12 +220,16 @@ class _SignUpState extends State<SignUp> {
                                   },
                                 ),
                               ),
-                              const Text(
-                                "Keep me in the loop with information and promotions",
-                                textWidthBasis: TextWidthBasis.parent,
-                                maxLines: 2,
-                                style:
-                                    TextStyle(overflow: TextOverflow.ellipsis),
+                              Expanded(
+                                child: RichText(
+                                  text: const TextSpan(
+                                    text:
+                                        "Keep me in the loop with information and promotions",
+                                    style: TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
