@@ -12,3 +12,5 @@ enum SelectedTab {
   addVirtualCard,
   addWallet
 }
+
+enum WalletType { virtualCardWallet, walletOnly }
