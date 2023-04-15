@@ -187,8 +187,11 @@ class _SignUpState extends State<SignUp> {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     children: [
-                                      const TextSpan(
+                                      TextSpan(
                                         text: "I accept the ",
+                                        style: TextStyle(
+                                          color: ThemeColors.dark,
+                                        ),
                                       ),
                                       TextSpan(
                                         text: "terms and conditions",
@@ -222,11 +225,12 @@ class _SignUpState extends State<SignUp> {
                               ),
                               Expanded(
                                 child: RichText(
-                                  text: const TextSpan(
+                                  text: TextSpan(
                                     text:
                                         "Keep me in the loop with information and promotions",
                                     style: TextStyle(
                                       overflow: TextOverflow.ellipsis,
+                                      color: ThemeColors.dark,
                                     ),
                                   ),
                                 ),

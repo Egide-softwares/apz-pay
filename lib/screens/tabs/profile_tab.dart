@@ -113,7 +113,7 @@ class _ProfileState extends State<Profile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Hi ${widget.user!.firstName}",
+                        "Hi ${widget.user?.firstName}",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,

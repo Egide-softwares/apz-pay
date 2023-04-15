@@ -238,8 +238,11 @@ class _SigninState extends State<Signin> {
                                 overflow: TextOverflow.ellipsis,
                               ),
                               children: [
-                                const TextSpan(
+                                TextSpan(
                                   text: "Forgot your password? ",
+                                  style: TextStyle(
+                                    color: ThemeColors.dark,
+                                  ),
                                 ),
                                 TextSpan(
                                   text: "Reset it here.",
@@ -268,9 +271,11 @@ class _SigninState extends State<Signin> {
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 children: [
-                                  const TextSpan(
-                                    text:
-                                        "Is your account not account account account account account set up yet? ",
+                                  TextSpan(
+                                    text: "Is your account not set up yet? ",
+                                    style: TextStyle(
+                                      color: ThemeColors.dark,
+                                    ),
                                   ),
                                   TextSpan(
                                     text: "Register here.",
