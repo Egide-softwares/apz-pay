@@ -65,7 +65,12 @@ class _WalletsState extends State<Wallets> {
           Padding(
             padding: const EdgeInsets.only(bottom: 15),
             child: GestureDetector(
-              onTap: () => {},
+              onTap: () => {
+                StoreProvider.dispatch(
+                  context,
+                  SelectBottomTabAction(selectedTab: SelectedTab.addWallet),
+                )
+              },
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 30),

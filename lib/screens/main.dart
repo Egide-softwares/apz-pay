@@ -1,3 +1,5 @@
+import 'package:apz_pay/screens/tabs/add_virtual_card_tab.dart';
+import 'package:apz_pay/screens/tabs/add_wallet_tab.dart';
 import 'package:apz_pay/screens/tabs/get_paid_tab.dart';
 import 'package:apz_pay/screens/tabs/pay_qrcode_tab.dart';
 import 'package:async_redux/async_redux.dart';
@@ -77,7 +79,7 @@ class Main extends StatefulWidget {
 class _MainState extends State<Main> {
   bool _showMoreOptions = false;
 
-  static const Map<SelectedTab, Widget> _widgetOptions = {
+  static const Map<SelectedTab, Widget> _tabs = {
     SelectedTab.home: ScreenLayout(
       title: "Home",
       widget: HomeConnector(),
@@ -99,7 +101,9 @@ class _MainState extends State<Main> {
     ),
     SelectedTab.profile: ProfileConnector(),
     SelectedTab.payQrCode: PayQrCode(),
-    SelectedTab.receivePaymentByQrCode: GetPaidByQrCode()
+    SelectedTab.receivePaymentByQrCode: GetPaidByQrCode(),
+    SelectedTab.addVirtualCard: AddVirtualCard(),
+    SelectedTab.addWallet: AddWallet()
   };
 
   static final List<Tuple<Widget?, String, Function(BuildContext ctx)>>
@@ -168,7 +172,7 @@ class _MainState extends State<Main> {
         child: Stack(
           children: [
             Positioned.fill(
-              child: _widgetOptions[widget.selectedBottomTab]!,
+              child: _tabs[widget.selectedBottomTab]!,
             ),
             Positioned(
               bottom: 4,

@@ -141,9 +141,27 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final List<Pair<String, VoidCallback>> addButtons = [
-      Pair("Add a Virtual Card", () => {}),
+      Pair(
+        "Add a Virtual Card",
+        () => {
+          StoreProvider.dispatch(
+            context,
+            SelectBottomTabAction(
+              selectedTab: SelectedTab.addVirtualCard,
+            ),
+          )
+        },
+      ),
       Pair("Add a Physical Card", () => {}),
-      Pair("Add Another Wallet", () => {}),
+      Pair(
+        "Add Another Wallet",
+        () => {
+          StoreProvider.dispatch(
+            context,
+            SelectBottomTabAction(selectedTab: SelectedTab.addWallet),
+          )
+        },
+      ),
     ];
 
     final List<Tuple<Widget, String, VoidCallback>> actionButtons = [
